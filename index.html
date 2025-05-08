@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Risk Prediction Tool</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetes Risk Prediction Tool</h1>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="manual-entry">Manual Data Entry</div>
+            <div class="tab" data-tab="file-upload">File Upload</div>
+        </div>
+        
+        <div id="manual-entry" class="tab-content active">
+            <p>Enter your health information below to get a prediction on your diabetes risk.</p>
+            
+            <form id="prediction-form">
+                <h2>General Health Information</h2>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="age">Age Group:</label>
+                            <select id="age" name="age">
+                                <option value="1">18 to 24</option>
+                                <option value="2">25 to 29</option>
+                                <option value="3">30 to 34</option>
+                                <option value="4">35 to 39</option>
+                                <option value="5">40 to 44</option>
+                                <option value="6">45 to 49</option>
+                                <option value="7">50 to 54</option>
+                                <option value="8">55 to 59</option>
+                                <option value="9">60 to 64</option>
+                                <option value="10">65 to 69</option>
+                                <option value="11">70 to 74</option>
+                                <option value="12">75 to 79</option>
+                                <option value="13">80 or older</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="sex">Sex:</label>
+                            <select id="sex" name="sex">
+                                <option value="0">Female</option>
+                                <option value="1">Male</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="bmi">
+                                BMI:
+                                <div class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltip-text">Body Mass Index. Weight (kg) / [Height (m)]²</span>
+                                </div>
+                            </label>
+                            <input type="number" id="bmi" name="bmi" min="10" max="100" step="0.1" required>
+                            <div class="feature-info">Normal range: 18.5-24.9</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Medical Conditions</h2>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="highBP">High Blood Pressure:</label>
+                            <select id="highBP" name="highBP">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="highChol">High Cholesterol:</label>
+                            <select id="highChol" name="highChol">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="cholCheck">Cholesterol Check (last 5 years):</label>
+                            <select id="cholCheck" name="cholCheck">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="stroke">History of Stroke:</label>
+                            <select id="stroke" name="stroke">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="heartDisease">Heart Disease or Heart Attack:</label>
+                            <select id="heartDisease" name="heartDisease">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="diffWalk">Difficulty Walking:</label>
+                            <select id="diffWalk" name="diffWalk">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Lifestyle Factors</h2>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="smoker">Smoker (lifetime ≥100 cigarettes):</label>
+                            <select id="smoker" name="smoker">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="physActivity">Physical Activity (past 30 days):</label>
+                            <select id="physActivity" name="physActivity">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="hvyAlcoholConsump">Heavy Alcohol Consumption:</label>
+                            <select id="hvyAlcoholConsump" name="hvyAlcoholConsump">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                            <div class="feature-info">Men >14 drinks/week, women >7</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="fruits">Daily Fruit Consumption:</label>
+                            <select id="fruits" name="fruits">
+                                <option value="0">Less than once per day</option>
+                                <option value="1">Once or more per day</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="veggies">Daily Vegetable Consumption:</label>
+                            <select id="veggies" name="veggies">
+                                <option value="0">Less than once per day</option>
+                                <option value="1">Once or more per day</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Healthcare Access</h2>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="anyHealthcare">Have Healthcare Coverage:</label>
+                            <select id="anyHealthcare" name="anyHealthcare">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="noDocbcCost">Avoided Doctor Due to Cost:</label>
+                            <select id="noDocbcCost" name="noDocbcCost">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Self-Reported Health Status</h2>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="genHlth">General Health:</label>
+                            <select id="genHlth" name="genHlth">
+                                <option value="1">Excellent</option>
+                                <option value="2">Very good</option>
+                                <option value="3">Good</option>
+                                <option value="4">Fair</option>
+                                <option value="5">Poor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="mentHlth">Poor Mental Health Days (past 30 days):</label>
+                            <input type="number" id="mentHlth" name="mentHlth" min="0" max="30" step="1" value="0">
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="physHlth">Poor Physical Health Days (past 30 days):</label>
+                            <input type="number" id="physHlth" name="physHlth" min="0" max="30" step="1" value="0">
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Socioeconomic Status</h2>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="education">Education Level:</label>
+                            <select id="education" name="education">
+                                <option value="1">Never attended school/only kindergarten</option>
+                                <option value="2">Elementary</option>
+                                <option value="3">Some high school</option>
+                                <option value="4">High school graduate</option>
+                                <option value="5">Some college or technical school</option>
+                                <option value="6">College graduate</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="income">Income Level:</label>
+                            <select id="income" name="income">
+                                <option value="1">Less than $10,000</option>
+                                <option value="2">$10,000 to $14,999</option>
+                                <option value="3">$15,000 to $24,999</option>
+                                <option value="4">$25,000 to $34,999</option>
+                                <option value="5">$35,000 to $49,999</option>
+                                <option value="6">$50,000 to $64,999</option>
+                                <option value="7">$65,000 to $74,999</option>
+                                <option value="8">$75,000 or more</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="predict-btn">Get Prediction</button>
+            </form>
+            
+            <div class="results" id="results">
+                <h2>Your Diabetes Risk Assessment</h2>
+                <p id="prediction-result"></p>
+                <div class="probability-meter">
+                    <div class="probability-fill" id="probability-fill"></div>
+                </div>
+                <p id="probability-text"></p>
+                <p id="disclaimer"><strong>Disclaimer:</strong> This tool provides an estimate based on statistical models and should not replace professional medical advice. Please consult with a healthcare provider for proper diagnosis and treatment.</p>
+            </div>
+        </div>
+        
+        <div id="file-upload" class="tab-content">
+            <p>Upload a CSV file with health data to get predictions for multiple individuals.</p>
+            <p><strong>Required format:</strong> The CSV must include all features used in the model. Please download the template below to ensure correct formatting.</p>
+            
+            <div class="form-group">
+                <a href="#" id="download-template">Download CSV Template</a>
+            </div>
+            
+            <div class="file-upload" id="file-upload-area">
+                <p>Drop your CSV file here or click to browse</p>
+                <input type="file" id="csv-file" accept=".csv" style="display: none;">
+            </div>
+            
+            <button type="button" id="process-file-btn" disabled>Process File</button>
+            
+            <div class="results" id="file-results">
+                <h2>Batch Processing Results</h2>
+                <p id="file-processing-status"></p>
+                <div id="file-results-summary"></div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Diabetes Risk Prediction Tool | Based on the Behavioral Risk Factor Surveillance System (BRFSS) data</p>
+        <p>Disclaimer: This is an educational tool and should not be used as a substitute for professional medical advice.</p>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>
